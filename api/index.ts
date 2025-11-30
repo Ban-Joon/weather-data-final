@@ -2,11 +2,11 @@
 
 import express from "express";
 import request from "request";
+import { parseString } from "xml2js"; // XML → JSON 변환
 
 const app = express();
 
-// GET /weather 라우트 생성
-app.get("/weather", (req: any, res: any) => {
+app.get("/weather", (req, res) => {
   const { serviceKey, numOfRows, pageNo, base_date, base_time, nx, ny } =
     req.query;
 
@@ -18,18 +18,22 @@ app.get("/weather", (req: any, res: any) => {
     qs: { serviceKey, numOfRows, pageNo, base_date, base_time, nx, ny },
   };
 
-  // 외부 API 요청 실행
-  request.get(options, (error: any, response: any, body: any) => {
+  request.get(options, (error, response, body) => {
     if (!error && response.statusCode === 200) {
-      res.setHeader("Content-Type", "application/xml;charset=utf-8");
-      res.status(200).end(body);
+      // XML → JSON 변환 후 응답
+      parseString(body, { explicitArray: false }, (err, result) => {
+        if (err) {
+          res.status(500).json({ error: "XML 파싱 오류" });
+        } else {
+          res.json(result); // ✅ JSON 응답
+        }
+      });
     } else {
       res.status(response?.statusCode || 500).end();
       console.log("error =", response?.statusCode);
     }
   });
 });
-
 // 서버 실행
 app.listen(3000, () => {
   console.log("✅ Weather API Server is running on port 3000");
