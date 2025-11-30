@@ -39,6 +39,8 @@ app.listen(3000, () => {
   console.log("✅ Weather API Server is running on port 3000");
   console.log("👉 테스트 요청 예시:");
   console.log(
-    "http://127.0.0.1:3000/weather?serviceKey=YOUR_API_KEY&numOfRows=10&pageNo=1&base_date=20251130&base_time=0830&nx=60&ny=127"
+    "http://127.0.0.1:3000/weather?serviceKey=xaewDvpKRfgguy5Dgl06BG9bn2wH7nKzTgUzxCD5gU8YCc6NkBeWWKZPJO9ZgjY%2FSmS4qyfS6eS9%2BHP2Kot%2Bgw%3D%3D&numOfRows=10&pageNo=1&base_date=20251130&base_time=0830&nx=60&ny=127"
   );
 });
+
+export default app;
