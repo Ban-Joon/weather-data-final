@@ -1,0 +1,27 @@
+{
+  "name": "weather-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node api/index.ts",
+    "start": "ts-node api/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "express": "^5.1.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.1",
+    "@types/node-fetch": "^2.6.13",
+    "@types/request": "^2.48.13",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
